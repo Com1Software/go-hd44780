@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/d2r2/go-i2c"
+	"github.com/googolgl/go-i2c"
 )
 
 const (
@@ -64,12 +64,12 @@ const (
 )
 
 type Lcd struct {
-	i2c       *i2c.I2C
+	i2c       *i2c.Options
 	backlight bool
 	lcdType   LcdType
 }
 
-func NewLcd(i2c *i2c.I2C, lcdType LcdType) (*Lcd, error) {
+func NewLcd(i2c *i2c.Options, lcdType LcdType) (*Lcd, error) {
 	this := &Lcd{i2c: i2c, backlight: false, lcdType: lcdType}
 	initByteSeq := []byte{
 		0x03, 0x03, 0x03, // base initialization
